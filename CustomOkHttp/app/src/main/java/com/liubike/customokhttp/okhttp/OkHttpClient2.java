@@ -9,6 +9,7 @@ package com.liubike.customokhttp.okhttp;
 public class OkHttpClient2 {
     private Dispatcher2 dispatcher;
     private Boolean isCanceled;
+    private int recount = 3; //重试次数
 
     public Dispatcher2 dispatcher() {
         return dispatcher;
@@ -29,7 +30,9 @@ public class OkHttpClient2 {
         return isCanceled;
     }
 
-    ;
+    public int getRecount() {
+        return recount;
+    }
 
     public Call2 newCall(Request2 request) {
         return new RealCall2(this, request);
@@ -38,6 +41,7 @@ public class OkHttpClient2 {
     public final static class Builder {
         private Dispatcher2 dispatcher;
         private Boolean isCanceled;
+        private int recount;
 
         public OkHttpClient2 build() {
             this.dispatcher = new Dispatcher2();
@@ -56,6 +60,17 @@ public class OkHttpClient2 {
          */
         public Builder canceled() {
             this.isCanceled = true;
+            return this;
+        }
+
+        /**
+         * 重试次数
+         *
+         * @param recount
+         * @return
+         */
+        public Builder recount(int recount) {
+            this.recount = recount;
             return this;
         }
     }

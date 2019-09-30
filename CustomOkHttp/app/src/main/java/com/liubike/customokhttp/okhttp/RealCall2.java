@@ -1,6 +1,12 @@
 package com.liubike.customokhttp.okhttp;
 
+import com.liubike.customokhttp.okhttp.chain.ChainManager;
+import com.liubike.customokhttp.okhttp.chain.Interceptor2;
+import com.liubike.customokhttp.okhttp.chain.ReRequestInterceptor;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * RealCall2
@@ -16,6 +22,10 @@ public class RealCall2 implements Call2 {
     public RealCall2(OkHttpClient2 okHttpClient2, Request2 request2) {
         this.okHttpClient2 = okHttpClient2;
         this.request2 = request2;
+    }
+
+    public OkHttpClient2 getOkHttpClient2() {
+        return okHttpClient2;
     }
 
     @Override
@@ -59,7 +69,7 @@ public class RealCall2 implements Call2 {
             this.callback2 = responseCallback;
         }
 
-        public Request2 getRequest(){
+        public Request2 getRequest() {
             return RealCall2.this.request2;
         }
 
@@ -88,8 +98,14 @@ public class RealCall2 implements Call2 {
     }
 
     Response2 getResponseWithInterceptorChain() throws IOException {
-        Response2 response2 = new Response2();
-        response2.setBody("流程走通...");
-        return null;
+//        Response2 response2 = new Response2();
+//        response2.setBody("流程走通...");
+//        return null;
+
+        List<Interceptor2> interceptor2List = new ArrayList<>();
+        interceptor2List.add(new ReRequestInterceptor());
+
+        ChainManager chainManager = new ChainManager(interceptor2List, 0, request2, RealCall2.this);
+        return chainManager.getResponse(request2); //最终返回的Response
     }
 }
