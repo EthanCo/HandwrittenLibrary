@@ -24,10 +24,6 @@ public class ChainManager implements Chain2 {
         return interceptors;
     }
 
-    public Request2 getRequest2() {
-        return request2;
-    }
-
     public RealCall2 getCall() {
         return call;
     }
