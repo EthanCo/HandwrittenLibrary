@@ -72,6 +72,7 @@ public class Request2 {
         }
 
         public Builder post(RequestBody2 requestBody){
+            this.requestMethod = POST;
             this.requestBody = requestBody;
             return this;
         }

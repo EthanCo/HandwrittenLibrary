@@ -1,8 +1,10 @@
 package com.liubike.customokhttp.okhttp;
 
 import com.liubike.customokhttp.okhttp.chain.ChainManager;
+import com.liubike.customokhttp.okhttp.chain.ConnectionServerInterceptor;
 import com.liubike.customokhttp.okhttp.chain.Interceptor2;
 import com.liubike.customokhttp.okhttp.chain.ReRequestInterceptor;
+import com.liubike.customokhttp.okhttp.chain.RequestHeaderInterceptor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -103,7 +105,9 @@ public class RealCall2 implements Call2 {
 //        return null;
 
         List<Interceptor2> interceptor2List = new ArrayList<>();
-        interceptor2List.add(new ReRequestInterceptor());
+        interceptor2List.add(new ReRequestInterceptor()); //重试拦截器
+        interceptor2List.add(new RequestHeaderInterceptor()); //请求体拦截器
+        interceptor2List.add(new ConnectionServerInterceptor()); //连接服务器的拦截器
 
         ChainManager chainManager = new ChainManager(interceptor2List, 0, request2, RealCall2.this);
         return chainManager.getResponse(request2); //最终返回的Response

@@ -29,7 +29,7 @@ public class RequestBody2 {
     public void addBody(String key, String value) {
         // 需要URL编码
         try {
-            bodys.put(URLEncoder.encode(key, UTC), URLEncoder.encode(key, UTC));
+            bodys.put(URLEncoder.encode(key, UTC), URLEncoder.encode(value, UTC));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

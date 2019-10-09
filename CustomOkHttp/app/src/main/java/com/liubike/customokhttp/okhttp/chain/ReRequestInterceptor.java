@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * 重试拦截器
+ * //源码解析详见 https://www.jianshu.com/p/3ef261ab157c
  *
  * @author Heiko
  * @date 2019/9/30
