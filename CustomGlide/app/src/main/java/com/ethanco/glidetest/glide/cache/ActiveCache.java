@@ -26,7 +26,7 @@ public class ActiveCache {
     private ReferenceQueue<Value> queue; // 目的：为了监听这个弱引用 是否被回收了
     private boolean isCloseThread;
     private Thread thread;
-    private boolean isShoudonRemove;
+    private boolean isShoudonRemove; //为了区分手动Remove和自动Remove
     private ValueCallback valueCallback;
 
     public ActiveCache(ValueCallback valueCallback) {
@@ -35,6 +35,7 @@ public class ActiveCache {
 
     /**
      * TODO 添加 活动缓存
+     *
      * @param key
      * @param value
      */
@@ -53,7 +54,62 @@ public class ActiveCache {
     }
 
     /**
+     * 给外界获取Value
+     *
+     * @param key
+     * @return
+     */
+    public Value get(String key) {
+        CustomoWeakReference valueWeakRefrence = mapList.get(key);
+        if (valueWeakRefrence != null) {
+            return valueWeakRefrence.get();
+        }
+        return null;
+    }
+
+    /**
+     * 手动删除 (移除)，被动移除
+     *
+     * @param key
+     * @return
+     */
+    public Value remove(String key) {
+        isShoudonRemove = true;
+        WeakReference<Value> valueWeakReference = mapList.remove(key);
+        isShoudonRemove = false; //状态还原，目的是为了让GC自动移除，继续工作
+        if (null != valueWeakReference) {
+            return valueWeakReference.get();
+        }
+        return null;
+    }
+
+    /**
+     * 释放 关闭线程
+     */
+    public void closeThread(){
+        isCloseThread = true;
+        /*if (null != thread) {
+            thread.interrupt(); //中断线程
+            try {
+                thread.join(5000);
+                if (thread.isAlive()) {
+                    throw new IllegalStateException("活动缓存中 关闭线程 线程没有停止下来...");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }*/
+        mapList.clear();
+        System.gc();
+    }
+
+    /**
      * 为了监听 弱引用被回收，被动移除的
+     *
+     * ---> 回收机制:GC扫描的时候回收 (弱引用)
+     * ReferenceQueue即这样的一个对象，当一个obj被gc掉之后，其相应的包装类，即ref对象会被放入queue中。
+     * 详见https://www.jianshu.com/p/73260a46291c
+     *
      * @return
      */
     private ReferenceQueue<Value> getQueue() {
@@ -61,16 +117,15 @@ public class ActiveCache {
             queue = new ReferenceQueue<>();
 
             // 监听这个弱引用 是否被回收了
-            thread =  new Thread(){
+            thread = new Thread() {
                 @Override
                 public void run() {
                     super.run();
 
                     while (!isCloseThread) {
-
                         try {
                             if (!isShoudonRemove) {
-                                // queue.remove(); 阻塞式的方法
+                                // queue.remove(); 阻塞式的方法，只有当弱引用被回收的时候，才会执行
 
                                 Reference<? extends Value> remove = queue.remove(); // 如果已经被回收了，就会执行到这个方法
                                 CustomoWeakReference weakReference = (CustomoWeakReference) remove;
