@@ -13,7 +13,7 @@ public class Value {
 
     private final String TAG = Value.class.getSimpleName();
 
-    private Value() {}
+    public Value() {}
 
     // 单利模式
     private static Value value;

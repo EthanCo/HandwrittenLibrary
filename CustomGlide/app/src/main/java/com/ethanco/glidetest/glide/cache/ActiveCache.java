@@ -14,6 +14,7 @@ import java.util.Map;
 
 /**
  * 活动缓存 -- 真正被使用的资源
+ * 职责:给正在使用的资源存储
  *
  * @author EthanCo
  * @since 2019/10/6
