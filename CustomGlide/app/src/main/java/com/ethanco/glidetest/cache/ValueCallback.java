@@ -1,4 +1,4 @@
-package com.ethanco.glidetest.cache.resource;
+package com.ethanco.glidetest.cache;
 
 /**
  * 专门给Value，不再使用了，的回调接口

@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.ethanco.glidetest.Tool;
-import com.ethanco.glidetest.cache.resource.Value;
+import com.ethanco.glidetest.cache.Value;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.ethanco.glidetest.cache.resource;
+package com.ethanco.glidetest.cache;
 
 import android.graphics.Bitmap;
 import android.util.Log;

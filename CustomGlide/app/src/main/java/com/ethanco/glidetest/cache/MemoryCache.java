@@ -4,8 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.LruCache;
 
-import com.ethanco.glidetest.cache.resource.Value;
-
 /**
  * 内存缓存:为第二次缓存服务
  * LRU算法:最近没有使用的元素，会自动被移除掉

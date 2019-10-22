@@ -1,8 +1,6 @@
 package com.ethanco.glidetest.cache;
 
 
-import com.ethanco.glidetest.cache.resource.Value;
-
 /**
  * 内存缓存中，元素被移除的接口回调
  *
