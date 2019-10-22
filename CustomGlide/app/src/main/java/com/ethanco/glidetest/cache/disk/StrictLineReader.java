@@ -1,4 +1,4 @@
-package com.ethanco.glidetest.glide.cache.disk;
+package com.ethanco.glidetest.cache.disk;
 
 
 import java.io.ByteArrayOutputStream;

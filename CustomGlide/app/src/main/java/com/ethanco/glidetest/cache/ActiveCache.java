@@ -1,10 +1,10 @@
-package com.ethanco.glidetest.glide.cache;
+package com.ethanco.glidetest.cache;
 
 import android.graphics.Bitmap;
 
-import com.ethanco.glidetest.glide.Tool;
-import com.ethanco.glidetest.glide.resource.Value;
-import com.ethanco.glidetest.glide.resource.ValueCallback;
+import com.ethanco.glidetest.Tool;
+import com.ethanco.glidetest.cache.resource.Value;
+import com.ethanco.glidetest.cache.resource.ValueCallback;
 
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;

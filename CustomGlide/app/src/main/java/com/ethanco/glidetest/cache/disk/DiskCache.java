@@ -1,12 +1,12 @@
-package com.ethanco.glidetest.glide.cache.disk;
+package com.ethanco.glidetest.cache.disk;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 
-import com.ethanco.glidetest.glide.Tool;
-import com.ethanco.glidetest.glide.resource.Value;
+import com.ethanco.glidetest.Tool;
+import com.ethanco.glidetest.cache.resource.Value;
 
 import java.io.File;
 import java.io.IOException;

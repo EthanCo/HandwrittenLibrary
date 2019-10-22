@@ -1,10 +1,10 @@
-package com.ethanco.glidetest.glide.cache;
+package com.ethanco.glidetest.cache;
 
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.LruCache;
 
-import com.ethanco.glidetest.glide.resource.Value;
+import com.ethanco.glidetest.cache.resource.Value;
 
 /**
  * 内存缓存:为第二次缓存服务

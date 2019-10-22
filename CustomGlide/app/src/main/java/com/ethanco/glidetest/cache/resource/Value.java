@@ -1,9 +1,9 @@
-package com.ethanco.glidetest.glide.resource;
+package com.ethanco.glidetest.cache.resource;
 
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.ethanco.glidetest.glide.Tool;
+import com.ethanco.glidetest.Tool;
 
 
 /**
@@ -97,7 +97,7 @@ public class Value {
         if (count <= 0 && callback != null) {
             // 回调告诉外界，不再使用了
             Log.d(TAG, "nonUseAction: VVVVVV mBitmap.isMutable():" + mBitmap.isMutable());
-            callback.valueNonUseListener(key, value);
+            //callback.valueNonUseListener(key, value);
         }
         Log.d(TAG, "useAction: 减一 count:" + count);
     }

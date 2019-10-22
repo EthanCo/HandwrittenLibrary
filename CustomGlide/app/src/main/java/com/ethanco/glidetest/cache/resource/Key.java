@@ -1,6 +1,6 @@
-package com.ethanco.glidetest.glide.resource;
+package com.ethanco.glidetest.cache.resource;
 
-import com.ethanco.glidetest.glide.Tool;
+import com.ethanco.glidetest.Tool;
 
 /**
  * 对Value的唯一性进行描述

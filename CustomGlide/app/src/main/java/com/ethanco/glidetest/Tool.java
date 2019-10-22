@@ -1,4 +1,4 @@
-package com.ethanco.glidetest.glide;
+package com.ethanco.glidetest;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
