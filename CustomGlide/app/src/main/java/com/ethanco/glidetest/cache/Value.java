@@ -97,7 +97,7 @@ public class Value {
         if (count <= 0 && callback != null) {
             // 回调告诉外界，不再使用了
             Log.d(TAG, "nonUseAction: VVVVVV mBitmap.isMutable():" + mBitmap.isMutable());
-            //callback.valueNonUseListener(key, value);
+            callback.valueNonUseListener(key, value);
         }
         Log.d(TAG, "useAction: 减一 count:" + count);
     }

@@ -33,9 +33,11 @@ public class RequestManager {
 
     /**
      * 可以管理生命周期 - FragmentActivity是有生命周期方法的(Fragment)
+     *
      * @param fragmentActivity
      */
     FragmentActivity fragmentActivity;
+
     public RequestManager(FragmentActivity fragmentActivity) {
         this.requestManagerContext = fragmentActivity;
         this.fragmentActivity = fragmentActivity;
@@ -58,6 +60,7 @@ public class RequestManager {
 
     /**
      * 可以管理生命周期 -- Activity是有生命周期方法的(Fragment)
+     *
      * @param activity
      */
     // todo @2
@@ -93,6 +96,7 @@ public class RequestManager {
 
     /**
      * 代表无法去管理生命周期 -- 因为Application无法管理
+     *
      * @param context
      */
     public RequestManager(Context context) {
@@ -101,12 +105,16 @@ public class RequestManager {
 
     /**
      * load 拿到要显示的图片路径
-     * @param s
+     *
+     * @param path
      * @return
      */
-    public RequestTargetEngine load(String s) {
+    public RequestTargetEngine load(String path) {
         // 移除Handler
         mHandler.removeMessages(NEXT_HANDLER_MSG);
+
+        //把值传递给资源加载引擎
+        requestTargetEngine.loadValueInitAction(path, requestManagerContext);
 
         return requestTargetEngine;
     }

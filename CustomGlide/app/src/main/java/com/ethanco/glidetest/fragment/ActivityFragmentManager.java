@@ -2,6 +2,7 @@ package com.ethanco.glidetest.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.util.Log;
 
 /**
  * Activity 生命周期关联管理
@@ -28,6 +29,7 @@ public class ActivityFragmentManager extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        Log.i("Z--", "onStop");
         if (lifecycleCallback != null) {
             lifecycleCallback.glideStopAction();
         }
@@ -36,6 +38,7 @@ public class ActivityFragmentManager extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.i("Z--", "onDestroy");
         if (lifecycleCallback != null) {
             lifecycleCallback.glideRecycleAction();
         }

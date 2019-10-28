@@ -81,14 +81,17 @@ public class DiskCache {
         Tool.checkNotEmpty(key);
 
         InputStream inputStream = null;
-        Value value = Value.getInstance();
         try {
             DiskLruCache.Snapshot snapshot = diskLruCache.get(key);
-            if (snapshot != null) {
-                inputStream = snapshot.getInputStream(0); //index 不能大于VALUE_COUNT
+            // 判断快照不为null的情况下，在去读取操作
+            if (null != snapshot) {
+                Value value = Value.getInstance();
+                inputStream = snapshot.getInputStream(0);// index 不能大于 VALUE_COUNT
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 value.setmBitmap(bitmap);
+                // 保存key 唯一标识
                 value.setKey(key);
+                return value;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -102,7 +105,7 @@ public class DiskCache {
                 }
             }
         }
-        return value;
+        return null; // 为了后续好判断
     }
 
 }
