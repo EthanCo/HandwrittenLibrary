@@ -1,4 +1,4 @@
-package com.liubike.customokhttp;
+package com.heiko.customokhttp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.liubike.customokhttp", appContext.getPackageName());
+        assertEquals("com.heiko.customokhttp", appContext.getPackageName());
     }
 }
